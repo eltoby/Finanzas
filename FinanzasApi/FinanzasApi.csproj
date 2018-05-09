@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FinanzasDtos\FinanzasDtos.csproj" />
+    <ProjectReference Include="..\FinanzasEF\FinanzasEF.csproj" />
   </ItemGroup>
 
 </Project>
