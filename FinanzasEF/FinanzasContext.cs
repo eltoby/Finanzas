@@ -10,5 +10,10 @@ namespace FinanzasEF
         }
 
         public DbSet<Movimiento> Movimientos { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.RemovePluralizingTableNameConvention();
+        }
     }
 }
