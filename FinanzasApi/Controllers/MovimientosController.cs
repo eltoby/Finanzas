@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using FinanzasDtos;
 using FinanzasEF;
 using FinanzasDomain;
+using AutoMapper;
 
 namespace FinanzasApi.Controllers
 {
@@ -20,14 +21,17 @@ namespace FinanzasApi.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<MovimientoDto> Get()
         {
-            return new string[] {"true"};
+            var result = this.context.Movimientos.ToArray();
+            var dtos = Mapper.Map<IEnumerable<MovimientoDto>>(result);
+            return dtos;
         }
     
         [HttpPost, Route("Insert")]
-        public bool Insert([FromBody]Movimiento movimiento)
+        public bool Insert([FromBody]MovimientoDto dto)
         {
+            var movimiento = Mapper.Map<Movimiento>(dto);
             this.context.Add(movimiento);
             this.context.SaveChanges();
             return true;

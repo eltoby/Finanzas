@@ -31,6 +31,8 @@ namespace FinanzasApi
 
             services.AddDbContext<FinanzasContext>(options => 
                 options.UseSqlServer(this.Configuration.GetConnectionString("FinanzasContext")));
+
+            new AutomapperConfiguration().Configure();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
