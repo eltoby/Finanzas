@@ -36,5 +36,13 @@ namespace FinanzasApi.Controllers
             this.context.SaveChanges();
             return true;
         }
+
+        [HttpPost, Route("Last")]
+        public IEnumerable<MovimientoDto> Last(int cantidad)
+        {
+            var movimientos = this.context.Movimientos.OrderByDescending(x => x.Fecha).Take(cantidad);
+            var dtos = Mapper.Map<IEnumerable<MovimientoDto>>(movimientos);
+            return dtos;
+        }
     }
 }
